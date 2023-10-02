@@ -1,0 +1,25 @@
+services:
+    api:
+        # env_file:
+        #     - .env
+        image: tdmu_auth_service:latest
+        environment:
+            - PORT=4000
+            - SERVICE_NAME=AUTH_SERVICE
+            - ACCESS_TOKEN_EXPIRES_TIME_DEV=3h
+            - REFRESH_TOKEN_EXPIRES_TIME_DEV=3d
+            - ACCESS_TOKEN_EXPIRES_TIME=3h
+            - REFRESH_TOKEN_EXPIRES_TIME=3d
+            - VERIFY_TOKEN_EXPIRES_TIME=1m
+            - MAIL_HOST=smtp.gmail.com
+            - MAIL_USER=pikapi.anony@gmail.com
+            - MAIL_PASS=sehnwhibxlzjuezp
+            - MAIL_FROM=admin TDMU
+            - MAIL_VERIFY_URL=http://localhost:5173/auth/verify-email
+            - CACHE_USER_REGISTER_TTL=3600
+            - CACHE_DB_URL=redis://default:vN8ElmJwc8TKqOsNuR08@containers-us-west-189.railway.app:7983
+            - DB_URI=postgresql://postgres:Ss66FZq6d8j4vyxKSzzb@containers-us-west-88.railway.app:7205/railway
+            - DATABASE_URL=postgresql://postgres:Ss66FZq6d8j4vyxKSzzb@containers-us-west-88.railway.app:7205/railway
+            - USER_SERVICE_URL_HOST=https://user-service-api-docs.onrender.com/api/user
+        ports:
+            - '4000:4000'
