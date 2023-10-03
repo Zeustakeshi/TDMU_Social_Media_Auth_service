@@ -1,7 +1,5 @@
 services:
     api:
-        # env_file:
-        #     - .env
         image: tdmu_auth_service:latest
         environment:
             - PORT=4000
@@ -16,10 +14,19 @@ services:
             - MAIL_PASS=sehnwhibxlzjuezp
             - MAIL_FROM=admin TDMU
             - MAIL_VERIFY_URL=http://localhost:5173/auth/verify-email
+
             - CACHE_USER_REGISTER_TTL=3600
-            - CACHE_DB_URL=redis://default:vN8ElmJwc8TKqOsNuR08@containers-us-west-189.railway.app:7983
-            - DB_URI=postgresql://postgres:Ss66FZq6d8j4vyxKSzzb@containers-us-west-88.railway.app:7205/railway
-            - DATABASE_URL=postgresql://postgres:Ss66FZq6d8j4vyxKSzzb@containers-us-west-88.railway.app:7205/railway
+            - CACHE_DB_URL=redis://default:HVlFOINtLHLv2oK9OiTb@containers-us-west-138.railway.app:7087
+
+            - DB_URI=postgresql://postgres:zHdIcKuDhAqJtTOA30Du@containers-us-west-187.railway.app:6484/railway
+            - DATABASE_URL=postgresql://postgres:zHdIcKuDhAqJtTOA30Du@containers-us-west-187.railway.app:6484/railway
+
             - USER_SERVICE_URL_HOST=https://user-service-api-docs.onrender.com/api/user
+
+            - TRANSPORT_REDIS_HOST=containers-us-west-54.railway.app
+            - TRANSPORT_REDIS_PORT=7305
+            - TRANSPORT_REDIS_USERNAME=default
+            - TRANSPORT_REDIS_PASSWORD=wYMIk76FjiDU0EwtTWPV
+        command:
         ports:
-            - '4000:4000'
+            - '4000:7035'

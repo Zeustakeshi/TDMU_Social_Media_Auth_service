@@ -39,7 +39,11 @@ interface ConfigType {
     cacheUserReigsterTTL: number;
     cacheDbURL: string;
     evironment: keyof typeof ENVIRONMENT;
-    port: number;
+    transportRedisPort: number;
+    transportRedisHost: string;
+    transportRedisUsername: string;
+    transportRedisPassword: string;
+
     database: {
         URL: string;
     };
@@ -47,10 +51,13 @@ interface ConfigType {
 
 const configs = {
     ...getConfig(),
+    transportRedisPort: parseInt(process.env.TRANSPORT_REDIS_PORT),
+    transportRedisHost: process.env.TRANSPORT_REDIS_HOST,
+    transportRedisUsername: process.env.TRANSPORT_REDIS_USERNAME,
+    transportRedisPassword: process.env.TRANSPORT_REDIS_PASSWORD,
     userServiceHost: process.env.USER_SERVICE_URL_HOST,
     evironment: process.env.NODE_ENV,
     serviceName: process.env.SERVICE_NAME,
-    port: parseInt(process.env.PORT, 10),
     accessTokenExpiresTime: process.env.ACCESS_TOKEN_EXPIRES_TIME || '5m',
     refreshTokenExpiresTime: process.env.REFRESH_TOKEN_EXPIRES_TIME || '2h',
     verifyTokenExpiresTime: process.env.VERIFY_TOKEN_EXPIRES_TIME || '10s',

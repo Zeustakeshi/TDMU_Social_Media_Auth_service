@@ -12,9 +12,12 @@ async function bootstrap() {
     const app = await NestFactory.createMicroservice<MicroserviceOptions>(
         AppModule,
         {
-            transport: Transport.TCP,
+            transport: Transport.REDIS,
             options: {
-                port: configs.port,
+                port: configs.transportRedisPort,
+                host: configs.transportRedisHost,
+                username: configs.transportRedisUsername,
+                password: configs.transportRedisPassword,
             },
         },
     );
@@ -30,7 +33,7 @@ async function bootstrap() {
     await app.listen();
     console.log(
         `Service: ${configs.serviceName}  
-        |--- Port: ${configs.port}
+        |--- Port: ${configs.transportRedisPort}
         |--- Running on ${configs.evironment}
         |--- Make something great! 😇`,
     );
